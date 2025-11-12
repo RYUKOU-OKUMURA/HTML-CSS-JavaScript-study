@@ -10,6 +10,7 @@
 2. **セマンティックHTML編** - 意味のあるマークアップ
 3. **画像最適化編** - パフォーマンスとUX向上
 4. **アクセシビリティ編** - すべてのユーザーに配慮した設計
+5. **パフォーマンス最適化編** - ページ速度の高速化
 
 ## 📖 目次
 
@@ -35,6 +36,7 @@ Webパフォーマンスの鍵となる画像の最適化について学びま�
 - [Lazy Loading（遅延読み込み）](./03-images/01-lazy-loading.md)
 - [Picture要素（レスポンシブ画像）](./03-images/02-picture-element.md)
 - [Decoding属性（デコード制御）](./03-images/03-decoding.md)
+- [ぼかし効果とプレースホルダー](./03-images/04-blur-effect.md)
 
 ### 4. アクセシビリティ編
 すべてのユーザーが使いやすいWebサイトを作るための知識です。
@@ -43,6 +45,12 @@ Webパフォーマンスの鍵となる画像の最適化について学びま�
 - [WCAG基礎](./04-accessibility/01-wcag-basics.md)
 - [WAI-ARIA](./04-accessibility/02-wai-aria.md)
 - [アクセシブルなタブUI](./04-accessibility/03-accessible-tabs.md)
+
+### 5. パフォーマンス最適化編
+ページ速度とCore Web Vitalsを改善するための技術です。
+
+- [パフォーマンス最適化概要](./05-performance/README.md)
+- [Link Preload（リソースの先読み）](./05-performance/01-link-preload.md)
 
 ## 💻 実装サンプル
 
@@ -62,6 +70,8 @@ Webパフォーマンスの鍵となる画像の最適化について学びま�
 - ✅ アクセシビリティに配慮したマークアップができる
 - ✅ モダンなHTML要素を適切に使える
 - ✅ ブラウザ対応を考慮した実装ができる
+- ✅ Core Web Vitalsを改善できる
+- ✅ リソースの最適な読み込み方法を選択できる
 
 ## 📝 注意事項
 
