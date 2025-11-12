@@ -1,17 +1,24 @@
-# HTML / CSS / JavaScript 学習リポジトリ
+# Web開発 & Python 学習リポジトリ
 
-このリポジトリは、モダンなHTML / CSS / JavaScriptの学習資料を集めた教科書的なリソースです。初学者から中級者まで、段階的に学習できるように構成されています。
+このリポジトリは、モダンなWeb開発（HTML / CSS / JavaScript）とPythonプログラミングの学習資料を集めた教科書的なリソースです。初学者から中級者まで、段階的に学習できるように構成されています。
 
 ## 📚 資料について
+
+### Web開発（HTML / CSS / JavaScript）
 
 この資料は、[令和のHTML / CSS / JavaScriptの書き方50選](https://zenn.dev/necscat/articles/bc9bba54babaf5)の記事を参考に、各トピックを詳しく解説・拡張したものです。
 
 iOS Safari 15系以上でサポートされている、2024年現在のモダンな実装方法を中心に扱っています。
 
+### Python
+
+Python 3.8以降のモダンな開発手法を学べる包括的なガイドです。基礎文法からオブジェクト指向、標準ライブラリの活用まで、実践的な内容を網羅しています。
+
 ## 🎯 対象者
 
-- Web開発を始めたばかりの初学者
-- 基礎的なHTML/CSS/JavaScriptは理解しているが、モダンな書き方を学びたい方
+- プログラミングを始めたばかりの初学者
+- Web開発の基礎を学びたい方
+- モダンなHTML/CSS/JavaScript/Pythonの書き方を学びたい方
 - 実務で使える実践的な知識を身につけたい方
 
 ---
@@ -184,12 +191,23 @@ iOS Safari 15系以上でサポートされている、2024年現在のモダン
 
 学んだ知識を活かして、以下のようなプロジェクトに挑戦しましょう：
 
+#### Web開発プロジェクト
 - **カードグリッド** - Grid Layout + Subgridで統一感のあるカード
 - **ダークモード対応サイト** - currentColorとCSS変数で効率的に
 - **アクセシブルなフォーム** - 適切なメディアクエリとVisually Hidden
 - **レスポンシブLP** - clamp()とモダンなビューポートユニット
 - **検索機能** - デバウンスとfetch APIで最適化
 - **スクロールアニメーション** - Intersection Observerで実装
+
+#### Pythonプロジェクト
+- **ToDoアプリ** - JSONでデータ保存、CLIまたはGUI
+- **ファイル整理ツール** - pathlibで拡張子別にファイル分類
+- **天気情報取得ツール** - APIを使って天気データを取得・表示
+- **簡単なWebスクレイピング** - requests + BeautifulSoup
+- **ログ分析ツール** - 正規表現でログファイルを解析
+
+#### フルスタックプロジェクト
+- **Python (FastAPI/Flask) + JavaScript** でWebアプリケーション開発
 
 ---
 
@@ -270,19 +288,41 @@ HTML-CSS-JavaScript-study/
 
 ### 推奨ツール
 
-- **エディタ**: VS Code、WebStorm、Cursor
-- **ブラウザ**: Chrome（DevToolsが強力）
-- **拡張機能**:
-  - Live Server（ローカルサーバー）
-  - Prettier（コードフォーマット）
-  - ESLint（JavaScriptの品質チェック）
-  - axe DevTools（アクセシビリティチェック）
+#### エディタ・IDE
+- **VS Code**（推奨） - Web開発・Python開発の両方に最適
+- **PyCharm** - Python専用IDE
+- **WebStorm** - Web開発専用IDE
+- **Cursor** - AI統合エディタ
+
+#### ブラウザ
+- **Chrome**（推奨） - DevToolsが強力
+- **Firefox Developer Edition**
+- **Safari** - iOS対応確認用
+
+#### VS Code 拡張機能
+
+**Web開発用:**
+- Live Server（ローカルサーバー）
+- Prettier（コードフォーマット）
+- ESLint（JavaScriptの品質チェック）
+- axe DevTools（アクセシビリティチェック）
+
+**Python開発用:**
+- Python（Microsoft公式）
+- Pylance（高速な言語サーバー）
+- autopep8 または Black（コードフォーマット）
+- Pylint または Flake8（コード品質チェック）
 
 ### チェックツール
 
+#### Web開発
 - **Lighthouse**: パフォーマンス・アクセシビリティ測定
 - **WAVE**: アクセシビリティチェック
 - **Can I use**: ブラウザ対応確認
+
+#### Python開発
+- **Python Tutor**: コードの実行を視覚化
+- **PEP 8 チェッカー**: コードスタイルチェック
 
 ---
 
@@ -387,26 +427,43 @@ HTML-CSS-JavaScript-study/
 
 ### 公式ドキュメント
 
-- [MDN Web Docs](https://developer.mozilla.org/ja/)
-- [HTML Standard](https://html.spec.whatwg.org/)
-- [W3C CSS Specifications](https://www.w3.org/Style/CSS/)
-- [ECMAScript仕様](https://tc39.es/ecma262/)
+#### Web開発
+- [MDN Web Docs](https://developer.mozilla.org/ja/) - Web技術の総合リファレンス
+- [HTML Standard](https://html.spec.whatwg.org/) - HTML標準仕様
+- [W3C CSS Specifications](https://www.w3.org/Style/CSS/) - CSS仕様
+- [ECMAScript仕様](https://tc39.es/ecma262/) - JavaScript標準仕様
+
+#### Python
+- [Python公式ドキュメント（日本語）](https://docs.python.org/ja/3/) - Python公式リファレンス
+- [PEP 8](https://pep8-ja.readthedocs.io/) - Pythonコーディング規約
+- [Python標準ライブラリ](https://docs.python.org/ja/3/library/)
 
 ### 学習リソース
 
-- [Web.dev](https://web.dev/)
-- [JavaScript.info](https://ja.javascript.info/)
-- [CSS-Tricks](https://css-tricks.com/)
+#### Web開発
+- [Web.dev](https://web.dev/) - Googleの学習サイト
+- [JavaScript.info](https://ja.javascript.info/) - JavaScriptの詳細チュートリアル
+- [CSS-Tricks](https://css-tricks.com/) - CSSテクニック集
+
+#### Python
+- [Python.org チュートリアル](https://docs.python.org/ja/3/tutorial/) - 公式チュートリアル
+- [Real Python](https://realpython.com/) - 実践的なPythonチュートリアル
+- [PyQ](https://pyq.jp/) - Python専門オンライン学習
 
 ### ツール
 
-- [Can I use](https://caniuse.com/)
-- [Clippy - clip-path maker](https://bennettfeely.com/clippy/)
-- [Babel REPL](https://babeljs.io/repl)
+#### Web開発
+- [Can I use](https://caniuse.com/) - ブラウザ対応確認
+- [Clippy - clip-path maker](https://bennettfeely.com/clippy/) - CSS clip-pathジェネレーター
+- [Babel REPL](https://babeljs.io/repl) - JavaScript変換確認
 
-### 元記事
+#### Python
+- [Python Tutor](https://pythontutor.com/) - コード実行の視覚化
+- [PEP 8 オンラインチェッカー](http://pep8online.com/) - コードスタイルチェック
 
-- [令和のHTML / CSS / JavaScriptの書き方50選](https://zenn.dev/necscat/articles/bc9bba54babaf5)
+### 元記事・参考資料
+
+- [令和のHTML / CSS / JavaScriptの書き方50選](https://zenn.dev/necscat/articles/bc9bba54babaf5) - このリポジトリのWeb開発資料の基礎となった記事
 
 ---
 
