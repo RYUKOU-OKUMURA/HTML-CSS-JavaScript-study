@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Details/Summary - アコーディオン実装例</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Details/Summary要素の実装例</h1>
+    <p>JavaScriptなしでアクセシブルなアコーディオンを実装できます。</p>
+
+    <section>
+      <h2>基本的な使い方</h2>
+
+      <details>
+        <summary>質問1: 送料はいくらですか？</summary>
+        <p>全国一律500円です。5,000円以上のご購入で送料無料になります。</p>
+      </details>
+
+      <details>
+        <summary>質問2: 支払い方法は何がありますか？</summary>
+        <p>クレジットカード、銀行振込、代金引換、コンビニ払いがご利用いただけます。</p>
+      </details>
+
+      <details>
+        <summary>質問3: 返品・交換は可能ですか？</summary>
+        <p>商品到着後14日以内であれば、未使用品に限り返品・交換が可能です。詳しくは返品ポリシーをご確認ください。</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>デフォルトで開いている例</h2>
+
+      <details open>
+        <summary>重要なお知らせ</summary>
+        <p>このセクションは最初から開いた状態で表示されます。<code>open</code>属性を指定しています。</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>排他的なアコーディオン（1つだけ開く）</h2>
+      <p><code>name</code>属性を使うと、同じ名前の要素は1つだけ開くようになります。</p>
+
+      <details name="exclusive">
+        <summary>セクション1</summary>
+        <p>セクション1の内容です。他のセクションを開くと、このセクションは自動的に閉じます。</p>
+      </details>
+
+      <details name="exclusive">
+        <summary>セクション2</summary>
+        <p>セクション2の内容です。</p>
+      </details>
+
+      <details name="exclusive">
+        <summary>セクション3</summary>
+        <p>セクション3の内容です。</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>複雑なコンテンツを含む例</h2>
+
+      <details>
+        <summary>API仕様 - ユーザー認証エンドポイント</summary>
+        <div class="api-docs">
+          <h3>POST /api/auth/login</h3>
+          <p>ユーザー認証を行います。</p>
+
+          <h4>リクエスト</h4>
+          <pre><code>{
+  "email": "user@example.com",
+  "password": "secret"
+}</code></pre>
+
+          <h4>レスポンス（成功時）</h4>
+          <pre><code>{
+  "token": "eyJhbGciOiJIUzI1NiIs...",
+  "user": {
+    "id": 1,
+    "email": "user@example.com",
+    "name": "山田太郎"
+  }
+}</code></pre>
+        </div>
+      </details>
+    </section>
+
+    <section class="tips">
+      <h2>💡 ポイント</h2>
+      <ul>
+        <li><strong>JavaScriptなし:</strong> ブラウザのネイティブ機能で動作</li>
+        <li><strong>アクセシビリティ:</strong> キーボード操作とスクリーンリーダーに自動対応</li>
+        <li><strong>検索対応:</strong> ブラウザの検索機能で該当する要素が自動的に展開</li>
+        <li><strong>シンプル:</strong> 複雑なJavaScriptライブラリが不要</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="../../../docs/html/02-semantic-html/01-details-summary.md">詳細ドキュメント</a></p>
+  </footer>
+</body>
+</html>

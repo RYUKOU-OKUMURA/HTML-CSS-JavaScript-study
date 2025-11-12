@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dialog要素 - モーダル実装例</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Dialog要素の実装例</h1>
+    <p>HTML標準のモーダルウィンドウ実装です。</p>
+
+    <section>
+      <h2>基本的なモーダル</h2>
+      <button type="button" data-modal="simpleModal">
+        シンプルなモーダルを開く
+      </button>
+    </section>
+
+    <section>
+      <h2>確認ダイアログ</h2>
+      <button type="button" data-modal="confirmModal" class="btn-danger">
+        削除（確認ダイアログ）
+      </button>
+      <p id="confirmResult"></p>
+    </section>
+
+    <section>
+      <h2>フォーム付きモーダル</h2>
+      <button type="button" data-modal="formModal">
+        ログインフォーム
+      </button>
+    </section>
+
+    <section class="tips">
+      <h2>💡 Dialog要素の特徴</h2>
+      <ul>
+        <li><strong>Escキーで閉じる:</strong> 自動的に対応</li>
+        <li><strong>背面の不活性化:</strong> モーダル表示中は背面にフォーカスが当たらない</li>
+        <li><strong>最上位レイヤー:</strong> z-indexに関係なく最前面に表示</li>
+        <li><strong>::backdrop疑似要素:</strong> 背景オーバーレイを簡単にスタイリング</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- シンプルなモーダル -->
+  <dialog
+    id="simpleModal"
+    aria-labelledby="simpleTitle"
+    aria-describedby="simpleDesc">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="simpleTitle">モーダルタイトル</h2>
+        <button
+          type="button"
+          class="close-button"
+          data-close
+          aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </header>
+
+      <div class="modal-body">
+        <p id="simpleDesc">これは基本的なモーダルウィンドウです。</p>
+        <p>Escキーを押すか、背景をクリックしても閉じることができます。</p>
+      </div>
+
+      <footer class="modal-footer">
+        <button type="button" data-close>閉じる</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- 確認ダイアログ -->
+  <dialog
+    id="confirmModal"
+    aria-labelledby="confirmTitle"
+    aria-describedby="confirmDesc">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="confirmTitle">確認</h2>
+        <button
+          type="button"
+          class="close-button"
+          data-close
+          aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </header>
+
+      <div class="modal-body">
+        <p id="confirmDesc">本当に削除しますか？この操作は取り消せません。</p>
+      </div>
+
+      <footer class="modal-footer">
+        <button type="button" data-close>キャンセル</button>
+        <button type="button" data-confirm class="btn-danger">削除</button>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- フォーム付きモーダル -->
+  <dialog
+    id="formModal"
+    aria-labelledby="formTitle"
+    aria-describedby="formDesc">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="formTitle">ログイン</h2>
+        <button
+          type="button"
+          class="close-button"
+          data-close
+          aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </header>
+
+      <div class="modal-body">
+        <p id="formDesc">アカウント情報を入力してください</p>
+
+        <form method="dialog">
+          <div class="form-group">
+            <label for="email">メールアドレス:</label>
+            <input type="email" id="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="password">パスワード:</label>
+            <input type="password" id="password" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="submit" value="cancel">キャンセル</button>
+            <button type="submit" value="login" class="btn-primary">ログイン</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
