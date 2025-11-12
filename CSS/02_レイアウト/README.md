@@ -137,6 +137,52 @@ CSS Grid Layoutは、**2次元のレイアウトシステム**で、行と列を
 }
 ```
 
+**グリッドラインを使った配置方法:**
+```css
+/* コンテナー設定 */
+.container {
+  display: grid;
+  grid-template-columns: 180px 1fr 160px;
+  grid-template-rows: 60px 1fr 90px;
+  min-height: 100vh;
+}
+
+/* ヘッダー: 1列目から4列目まで（全幅）、1行目 */
+.header {
+  grid-column: 1 / 4;
+  grid-row: 1;
+}
+
+/* 左サイドバー: 1列目、2行目 */
+.sidebar-left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* メインコンテンツ: 2列目、2行目 */
+.main {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* 右サイドバー: 3列目、2行目 */
+.sidebar-right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* フッター: 1列目から4列目まで（全幅）、3行目 */
+.footer {
+  grid-column: 1 / 4;
+  grid-row: 3;
+}
+```
+
+**メリット:**
+- HTML構造がシンプル（余計な囲み要素が不要）
+- レイアウト指定がコンテナーに集約される
+- `1fr`単位で残りの幅が自動配分される
+
 #### パターン3: レスポンシブ3カラム → 1カラム
 ```css
 .grid {

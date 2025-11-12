@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクセシブルなタブUI</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .note {
+      background: #e8f4f8;
+      border-left: 4px solid #0066cc;
+      padding: 16px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .note strong {
+      color: #0066cc;
+    }
+
+    .note ul {
+      margin: 8px 0 0 0;
+    }
+
+    /* タブコンテナ */
+    .tabs-container {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* タブリスト */
+    [role="tablist"] {
+      display: flex;
+      gap: 4px;
+      border-bottom: 2px solid #e0e0e0;
+      margin-bottom: 24px;
+    }
+
+    /* タブボタン */
+    [role="tab"] {
+      padding: 12px 24px;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      color: #666;
+      transition: color 0.2s, border-color 0.2s;
+      position: relative;
+      top: 2px;
+    }
+
+    /* ホバー状態（ポインターデバイスのみ） */
+    @media (any-hover: hover) {
+      [role="tab"]:hover {
+        color: #0066cc;
+      }
+    }
+
+    /* フォーカス状態（キーボード） */
+    [role="tab"]:focus-visible {
+      outline: 2px solid #0066cc;
+      outline-offset: 2px;
+      color: #0066cc;
+    }
+
+    /* 選択状態 */
+    [role="tab"][aria-selected="true"] {
+      color: #0066cc;
+      border-bottom-color: #0066cc;
+    }
+
+    /* タブパネル */
+    [role="tabpanel"] {
+      padding: 24px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: #fafafa;
+      animation: fadeIn 0.3s ease;
+    }
+
+    [role="tabpanel"]:focus {
+      outline: 2px solid #0066cc;
+      outline-offset: 2px;
+    }
+
+    [role="tabpanel"][hidden] {
+      display: none;
+    }
+
+    [role="tabpanel"] h2 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    /* フェードインアニメーション */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* アニメーション削減設定への対応 */
+    @media (prefers-reduced-motion: reduce) {
+      [role="tabpanel"] {
+        animation: none;
+      }
+    }
+
+    .code-example {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    .code-example code {
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>アクセシブルなタブUI</h1>
+
+  <div class="note">
+    <strong>キーボード操作:</strong>
+    <ul>
+      <li><strong>Tab</strong>: タブリストにフォーカス移動、パネル内を移動</li>
+      <li><strong>→（右矢印）</strong>: 次のタブへ移動</li>
+      <li><strong>←（左矢印）</strong>: 前のタブへ移動</li>
+      <li><strong>Home</strong>: 最初のタブへ移動</li>
+      <li><strong>End</strong>: 最後のタブへ移動</li>
+    </ul>
+  </div>
+
+  <div class="tabs-container">
+    <!-- タブリスト -->
+    <div role="tablist" aria-label="実装ガイド">
+      <button
+        role="tab"
+        aria-controls="panel-overview"
+        aria-selected="true"
+        tabindex="0"
+        id="tab-overview"
+      >
+        概要
+      </button>
+      <button
+        role="tab"
+        aria-controls="panel-html"
+        aria-selected="false"
+        tabindex="-1"
+        id="tab-html"
+      >
+        HTML構造
+      </button>
+      <button
+        role="tab"
+        aria-controls="panel-aria"
+        aria-selected="false"
+        tabindex="-1"
+        id="tab-aria"
+      >
+        WAI-ARIA
+      </button>
+      <button
+        role="tab"
+        aria-controls="panel-keyboard"
+        aria-selected="false"
+        tabindex="-1"
+        id="tab-keyboard"
+      >
+        キーボード操作
+      </button>
+    </div>
+
+    <!-- タブパネル1: 概要 -->
+    <section
+      role="tabpanel"
+      id="panel-overview"
+      aria-labelledby="tab-overview"
+      tabindex="0"
+    >
+      <h2>アクセシブルなタブUIとは</h2>
+      <p>タブUIは、複数のコンテンツを切り替えて表示するパターンです。アクセシビリティに配慮した実装には、以下が必須です：</p>
+      <ul>
+        <li>WAI-ARIA属性の正しい使用</li>
+        <li>キーボード操作のサポート</li>
+        <li>スクリーンリーダー対応</li>
+        <li>適切なフォーカス管理</li>
+      </ul>
+      <p>このデモでは、W3Cの推奨パターンに従った実装を示しています。</p>
+    </section>
+
+    <!-- タブパネル2: HTML構造 -->
+    <section
+      role="tabpanel"
+      id="panel-html"
+      aria-labelledby="tab-html"
+      tabindex="0"
+      hidden
+    >
+      <h2>HTML構造</h2>
+      <p>タブUIは3つの主要な要素で構成されます：</p>
+      <ol>
+        <li><strong>タブリスト</strong> (<code>role="tablist"</code>) - タブのコンテナ</li>
+        <li><strong>タブ</strong> (<code>role="tab"</code>) - 選択可能なトリガー</li>
+        <li><strong>タブパネル</strong> (<code>role="tabpanel"</code>) - コンテンツエリア</li>
+      </ol>
+      <p>タブは<code>&lt;button&gt;</code>または<code>&lt;a&gt;</code>要素で実装し、フォーカスを受け取れるようにします。</p>
+    </section>
+
+    <!-- タブパネル3: WAI-ARIA -->
+    <section
+      role="tabpanel"
+      id="panel-aria"
+      aria-labelledby="tab-aria"
+      tabindex="0"
+      hidden
+    >
+      <h2>WAI-ARIA属性</h2>
+      <h3>タブ要素に必要な属性</h3>
+      <ul>
+        <li><code>role="tab"</code> - タブであることを示す</li>
+        <li><code>aria-controls</code> - 紐付けるパネルのID</li>
+        <li><code>aria-selected</code> - 選択状態（true/false）</li>
+        <li><code>tabindex</code> - フォーカス管理（選択中:0、非選択:-1）</li>
+        <li><code>id</code> - パネルから参照されるID</li>
+      </ul>
+      <h3>タブパネルに必要な属性</h3>
+      <ul>
+        <li><code>role="tabpanel"</code> - タブパネルであることを示す</li>
+        <li><code>aria-labelledby</code> - 紐付けるタブのID</li>
+        <li><code>tabindex="0"</code> - パネル自体もフォーカス可能に</li>
+        <li><code>hidden</code> - 非表示状態を制御</li>
+      </ul>
+    </section>
+
+    <!-- タブパネル4: キーボード操作 -->
+    <section
+      role="tabpanel"
+      id="panel-keyboard"
+      aria-labelledby="tab-keyboard"
+      tabindex="0"
+      hidden
+    >
+      <h2>キーボード操作のサポート</h2>
+      <p>以下のキーボード操作が実装されています：</p>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background: #f0f0f0;">
+            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">キー</th>
+            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">動作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 12px; border: 1px solid #ddd;"><strong>Tab</strong></td>
+            <td style="padding: 12px; border: 1px solid #ddd;">タブリストにフォーカス移動、パネル内を移動</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; border: 1px solid #ddd;"><strong>→（右矢印）</strong></td>
+            <td style="padding: 12px; border: 1px solid #ddd;">次のタブへ移動（自動アクティベーション）</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; border: 1px solid #ddd;"><strong>←（左矢印）</strong></td>
+            <td style="padding: 12px; border: 1px solid #ddd;">前のタブへ移動（自動アクティベーション）</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; border: 1px solid #ddd;"><strong>Home</strong></td>
+            <td style="padding: 12px; border: 1px solid #ddd;">最初のタブへ移動</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; border: 1px solid #ddd;"><strong>End</strong></td>
+            <td style="padding: 12px; border: 1px solid #ddd;">最後のタブへ移動</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 16px;">このデモでは<strong>自動アクティベーション</strong>を採用しています。矢印キーでフォーカスが移動すると同時にタブが切り替わります。</p>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tablist = document.querySelector('[role="tablist"]');
+      const tabs = tablist.querySelectorAll('[role="tab"]');
+      const panels = document.querySelectorAll('[role="tabpanel"]');
+
+      // タブクリック時
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          activateTab(tab);
+        });
+
+        // キーボード操作
+        tab.addEventListener('keydown', (e) => {
+          const currentIndex = Array.from(tabs).indexOf(tab);
+          let targetTab = null;
+
+          switch (e.key) {
+            case 'ArrowRight':
+              // 次のタブへ
+              targetTab = tabs[currentIndex + 1] || tabs[0];
+              break;
+            case 'ArrowLeft':
+              // 前のタブへ
+              targetTab = tabs[currentIndex - 1] || tabs[tabs.length - 1];
+              break;
+            case 'Home':
+              // 最初のタブへ
+              targetTab = tabs[0];
+              break;
+            case 'End':
+              // 最後のタブへ
+              targetTab = tabs[tabs.length - 1];
+              break;
+            default:
+              return;
+          }
+
+          if (targetTab) {
+            e.preventDefault();
+            activateTab(targetTab);
+            targetTab.focus();
+          }
+        });
+      });
+
+      // タブをアクティブ化
+      function activateTab(targetTab) {
+        // すべてのタブを非アクティブ化
+        tabs.forEach((tab) => {
+          tab.setAttribute('aria-selected', 'false');
+          tab.setAttribute('tabindex', '-1');
+        });
+
+        // すべてのパネルを非表示
+        panels.forEach((panel) => {
+          panel.hidden = true;
+        });
+
+        // 選択されたタブをアクティブ化
+        targetTab.setAttribute('aria-selected', 'true');
+        targetTab.setAttribute('tabindex', '0');
+
+        // 対応するパネルを表示
+        const targetPanelId = targetTab.getAttribute('aria-controls');
+        const targetPanel = document.getElementById(targetPanelId);
+        targetPanel.hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>
