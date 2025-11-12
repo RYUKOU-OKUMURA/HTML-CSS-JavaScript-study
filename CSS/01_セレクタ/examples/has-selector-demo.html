@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>:has() セレクタのデモ</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #0066cc;
+      padding-bottom: 10px;
+    }
+
+    .demo-section {
+      margin: 30px 0;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-section h2 {
+      color: #0066cc;
+      margin-top: 0;
+    }
+
+    /* デモ1: 画像を含むカードのスタイリング */
+    .card {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    /* 画像がある場合はグリッドレイアウト */
+    .card:has(img) {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      background-color: #f9f9f9;
+    }
+
+    /* 画像がある場合、ホバー時に目立たせる */
+    .card:has(img):hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* デモ2: フォーカス状態の検出 */
+    .form-container {
+      border: 2px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    /* フォーム内の要素がフォーカスされたら、フォーム全体を強調 */
+    .form-container:has(:focus) {
+      border-color: #0066cc;
+      background-color: #f0f7ff;
+      box-shadow: 0 0 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .form-group {
+      margin: 15px 0;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #0066cc;
+    }
+
+    /* デモ3: エラー状態の表示 */
+    .form-group:has(.error-message) {
+      background-color: #fff3f3;
+      padding: 15px;
+      border-left: 4px solid #ff0000;
+      border-radius: 4px;
+    }
+
+    .error-message {
+      color: #ff0000;
+      font-size: 14px;
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* デモ4: リストアイテムの数に応じたレイアウト */
+    .list-container {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    /* 5個以上のアイテムがある場合、2カラムレイアウト */
+    .list-container:has(li:nth-child(5)) {
+      column-count: 2;
+      column-gap: 30px;
+    }
+
+    .list-container ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .list-container li {
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+
+    .info-box {
+      background-color: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <h1>:has() セレクタの実践デモ</h1>
+
+  <!-- デモ1: 画像を含むカードのスタイリング -->
+  <div class="demo-section">
+    <h2>デモ1: 画像の有無によるレイアウト変更</h2>
+    <div class="info-box">
+      <p>画像がある場合はグリッドレイアウト、ない場合は通常のブロックレイアウトになります</p>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/200x150/0066cc/ffffff?text=Image" alt="サンプル画像">
+      <div class="card-content">
+        <h3>画像付きカード</h3>
+        <p>このカードには画像があるため、グリッドレイアウトで表示されています。ホバーすると少し浮き上がります。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-content">
+        <h3>画像なしカード</h3>
+        <p>このカードには画像がないため、通常のブロックレイアウトで表示されています。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/200x150/ff6b6b/ffffff?text=Image" alt="サンプル画像2">
+      <div class="card-content">
+        <h3>もう1つの画像付きカード</h3>
+        <p>こちらも画像があるため、同じグリッドレイアウトで表示されています。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- デモ2: フォーカス状態の検出 -->
+  <div class="demo-section">
+    <h2>デモ2: フォーカス状態によるフォーム全体の強調</h2>
+    <div class="info-box">
+      <p>フォーム内の入力欄にフォーカスすると、フォーム全体が青く強調されます</p>
+    </div>
+
+    <div class="form-container">
+      <div class="form-group">
+        <label for="name">お名前</label>
+        <input type="text" id="name" placeholder="山田太郎">
+      </div>
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" placeholder="example@example.com">
+      </div>
+      <div class="form-group">
+        <label for="message">メッセージ</label>
+        <textarea id="message" rows="4" placeholder="メッセージを入力してください"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- デモ3: エラー状態の表示 -->
+  <div class="demo-section">
+    <h2>デモ3: エラーメッセージを含む入力欄の強調</h2>
+    <div class="info-box">
+      <p>エラーメッセージがある入力欄の親要素が自動的に赤く強調されます</p>
+    </div>
+
+    <div class="form-group">
+      <label for="username">ユーザー名</label>
+      <input type="text" id="username" value="ab">
+      <span class="error-message">ユーザー名は3文字以上で入力してください</span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">パスワード</label>
+      <input type="password" id="password" value="password123">
+    </div>
+
+    <div class="form-group">
+      <label for="confirm-password">パスワード（確認）</label>
+      <input type="password" id="confirm-password" value="password456">
+      <span class="error-message">パスワードが一致しません</span>
+    </div>
+  </div>
+
+  <!-- デモ4: リストアイテムの数に応じたレイアウト -->
+  <div class="demo-section">
+    <h2>デモ4: アイテム数に応じた自動レイアウト変更</h2>
+    <div class="info-box">
+      <p>5個以上のアイテムがある場合、自動的に2カラムレイアウトになります</p>
+    </div>
+
+    <h3>短いリスト（4項目）</h3>
+    <div class="list-container">
+      <ul>
+        <li>アイテム1</li>
+        <li>アイテム2</li>
+        <li>アイテム3</li>
+        <li>アイテム4</li>
+      </ul>
+    </div>
+
+    <h3>長いリスト（6項目 - 2カラム表示）</h3>
+    <div class="list-container">
+      <ul>
+        <li>アイテム1</li>
+        <li>アイテム2</li>
+        <li>アイテム3</li>
+        <li>アイテム4</li>
+        <li>アイテム5</li>
+        <li>アイテム6</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

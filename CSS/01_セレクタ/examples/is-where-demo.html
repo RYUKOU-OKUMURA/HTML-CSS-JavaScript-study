@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>:is() と :where() セレクタのデモ</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #9c27b0;
+      padding-bottom: 10px;
+    }
+
+    .demo-section {
+      margin: 30px 0;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-section h2 {
+      color: #9c27b0;
+      margin-top: 0;
+    }
+
+    .info-box {
+      background-color: #f3e5f5;
+      border-left: 4px solid #9c27b0;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: #7b1fa2;
+      line-height: 1.6;
+    }
+
+    code {
+      background-color: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      color: #d32f2f;
+    }
+
+    /* デモ1: :is()で複数の見出しをまとめてスタイリング */
+    :is(h3, h4, h5) {
+      color: #1976d2;
+      font-weight: 600;
+      margin: 20px 0 10px 0;
+    }
+
+    /* デモ2: :is()で複数の場所のリンクをまとめてスタイリング */
+    :is(.header, .sidebar, .footer) a {
+      color: #0066cc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    :is(.header, .sidebar, .footer) a:hover {
+      color: #ff6b6b;
+      text-decoration: underline;
+    }
+
+    .header, .sidebar, .footer {
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+
+    .header {
+      background-color: #e3f2fd;
+    }
+
+    .sidebar {
+      background-color: #f1f8e9;
+    }
+
+    .footer {
+      background-color: #fce4ec;
+    }
+
+    /* デモ3: :where()で上書きしやすいベーススタイル */
+    /* 詳細度0 - 簡単に上書き可能 */
+    :where(.button) {
+      display: inline-block;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #e0e0e0;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 5px;
+    }
+
+    /* 通常のクラスセレクタで簡単に上書き */
+    .button-primary {
+      background-color: #2196f3;
+      color: white;
+    }
+
+    .button-success {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .button-danger {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* デモ4: 詳細度の違いを示す例 */
+    .specificity-demo {
+      padding: 20px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    /* :where()を使用 - 詳細度0 */
+    :where(.box-where) {
+      background-color: #ffeb3b;
+      color: #333;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+
+    /* :is()を使用 - 詳細度(0,1,0) */
+    :is(.box-is) {
+      background-color: #ff9800;
+      color: white;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+
+    /* 通常のクラスセレクタで上書き試行 - 詳細度(0,1,0) */
+    .box-where {
+      background-color: #4caf50; /* これは上書きされる(:where()は詳細度0) */
+    }
+
+    .box-is {
+      background-color: #4caf50; /* これは上書きされない(:is()も詳細度(0,1,0)だが、後に書かれていない) */
+    }
+
+    /* デモ5: ボタンの状態をまとめて指定 */
+    .interactive-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s;
+    }
+
+    /* :is()で複数の状態をまとめて指定 */
+    .interactive-btn:is(:hover, :focus, :active) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(103, 58, 183, 0.4);
+      background-color: #5e35b1;
+    }
+
+    .interactive-btn:focus {
+      outline: 2px solid #9c27b0;
+      outline-offset: 2px;
+    }
+
+    /* 比較用のコードブロック */
+    .code-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 15px 0;
+    }
+
+    .code-block {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    .code-block h4 {
+      margin: 0 0 10px 0;
+      color: #4ec9b0;
+      font-size: 14px;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .keyword {
+      color: #569cd6;
+    }
+
+    .selector {
+      color: #d7ba7d;
+    }
+
+    .property {
+      color: #9cdcfe;
+    }
+
+    .value {
+      color: #ce9178;
+    }
+  </style>
+</head>
+<body>
+  <h1>:is() と :where() セレクタの実践デモ</h1>
+
+  <!-- デモ1: :is()で見出しをまとめる -->
+  <div class="demo-section">
+    <h2>デモ1: :is()で複数の見出しを一括スタイリング</h2>
+    <div class="info-box">
+      <p>従来は各見出しに個別にスタイルを指定していましたが、<code>:is()</code>を使うと一行で記述できます</p>
+    </div>
+
+    <div class="code-comparison">
+      <div class="code-block">
+        <h4>❌ 従来の方法（冗長）</h4>
+        <pre><span class="selector">h3</span> { <span class="property">color</span>: <span class="value">#1976d2</span>; }
+<span class="selector">h4</span> { <span class="property">color</span>: <span class="value">#1976d2</span>; }
+<span class="selector">h5</span> { <span class="property">color</span>: <span class="value">#1976d2</span>; }</pre>
+      </div>
+      <div class="code-block">
+        <h4>✅ :is()を使用（簡潔）</h4>
+        <pre><span class="keyword">:is(</span><span class="selector">h3, h4, h5</span><span class="keyword">)</span> {
+  <span class="property">color</span>: <span class="value">#1976d2</span>;
+}</pre>
+      </div>
+    </div>
+
+    <h3>これはh3の見出しです</h3>
+    <p>上記の見出しは:is()セレクタでスタイリングされています。</p>
+
+    <h4>これはh4の見出しです</h4>
+    <p>h4も同じスタイルが適用されています。</p>
+
+    <h5>これはh5の見出しです</h5>
+    <p>h5も同様に青色でスタイリングされています。</p>
+  </div>
+
+  <!-- デモ2: :is()で複数エリアのリンクをまとめる -->
+  <div class="demo-section">
+    <h2>デモ2: :is()で複数エリアのリンクを一括スタイリング</h2>
+    <div class="info-box">
+      <p>ヘッダー、サイドバー、フッターのリンクを<code>:is()</code>でまとめてスタイリング</p>
+    </div>
+
+    <div class="header">
+      <strong>ヘッダー:</strong> <a href="#">ホーム</a> | <a href="#">サービス</a> | <a href="#">お問い合わせ</a>
+    </div>
+
+    <div class="sidebar">
+      <strong>サイドバー:</strong> <a href="#">カテゴリ1</a> | <a href="#">カテゴリ2</a> | <a href="#">カテゴリ3</a>
+    </div>
+
+    <div class="footer">
+      <strong>フッター:</strong> <a href="#">プライバシーポリシー</a> | <a href="#">利用規約</a> | <a href="#">会社概要</a>
+    </div>
+  </div>
+
+  <!-- デモ3: :where()で上書きしやすいベーススタイル -->
+  <div class="demo-section">
+    <h2>デモ3: :where()で上書きしやすいボタンのベーススタイル</h2>
+    <div class="info-box">
+      <p><code>:where()</code>で定義したベーススタイルは詳細度が0なので、通常のクラスセレクタで簡単に上書きできます</p>
+    </div>
+
+    <button class="button">デフォルトボタン</button>
+    <button class="button button-primary">プライマリボタン</button>
+    <button class="button button-success">成功ボタン</button>
+    <button class="button button-danger">危険ボタン</button>
+  </div>
+
+  <!-- デモ4: 詳細度の違いの実演 -->
+  <div class="demo-section">
+    <h2>デモ4: :is()と:where()の詳細度の違い</h2>
+    <div class="info-box">
+      <p><code>:where()</code>は詳細度0なので上書きされますが、<code>:is()</code>は通常の詳細度を持つため上書きされません</p>
+    </div>
+
+    <div class="specificity-demo">
+      <div class="box-where">
+        <strong>:where()の例</strong>
+        <p>このボックスは元々黄色(:where()で指定)でしたが、緑色(.box-whereクラスで上書き)に変わっています。</p>
+      </div>
+
+      <div class="box-is">
+        <strong>:is()の例</strong>
+        <p>このボックスはオレンジ色(:is()で指定)のままです。.box-isクラスで緑色に上書きしようとしましたが、詳細度が同じで先に定義された:is()が優先されています。</p>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <h4>CSS コード</h4>
+      <pre><span class="comment">/* :where()を使用 - 詳細度0 */</span>
+<span class="keyword">:where(</span><span class="selector">.box-where</span><span class="keyword">)</span> {
+  <span class="property">background-color</span>: <span class="value">#ffeb3b</span>; <span class="comment">/* 黄色 */</span>
+}
+
+<span class="comment">/* 通常のクラスで上書き成功 */</span>
+<span class="selector">.box-where</span> {
+  <span class="property">background-color</span>: <span class="value">#4caf50</span>; <span class="comment">/* 緑色 - 上書きされる */</span>
+}
+
+<span class="comment">/* :is()を使用 - 詳細度(0,1,0) */</span>
+<span class="keyword">:is(</span><span class="selector">.box-is</span><span class="keyword">)</span> {
+  <span class="property">background-color</span>: <span class="value">#ff9800</span>; <span class="comment">/* オレンジ */</span>
+}
+
+<span class="comment">/* 詳細度が同じなので上書きされない */</span>
+<span class="selector">.box-is</span> {
+  <span class="property">background-color</span>: <span class="value">#4caf50</span>; <span class="comment">/* 緑色 - 上書きされない */</span>
+}</pre>
+    </div>
+  </div>
+
+  <!-- デモ5: ボタンの複数状態を一括指定 -->
+  <div class="demo-section">
+    <h2>デモ5: :is()でボタンの複数状態を一括指定</h2>
+    <div class="info-box">
+      <p>ホバー、フォーカス、アクティブ状態を<code>:is()</code>でまとめて指定できます</p>
+    </div>
+
+    <button class="interactive-btn">ホバーまたはクリックしてみてください</button>
+    <button class="interactive-btn">もう1つのボタン</button>
+
+    <div class="code-block" style="margin-top: 20px;">
+      <h4>CSS コード</h4>
+      <pre><span class="comment">/* :is()で複数の状態をまとめて指定 */</span>
+<span class="selector">.interactive-btn</span><span class="keyword">:is(:hover, :focus, :active)</span> {
+  <span class="property">transform</span>: <span class="value">translateY(-2px)</span>;
+  <span class="property">box-shadow</span>: <span class="value">0 6px 12px rgba(103, 58, 183, 0.4)</span>;
+  <span class="property">background-color</span>: <span class="value">#5e35b1</span>;
+}</pre>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="demo-section">
+    <h2>まとめ: :is()と:where()の使い分け</h2>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+      <thead>
+        <tr style="background-color: #f5f5f5;">
+          <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">セレクタ</th>
+          <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">詳細度</th>
+          <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">主な用途</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 12px; border: 1px solid #ddd;"><code>:is()</code></td>
+          <td style="padding: 12px; border: 1px solid #ddd;">引数内の最大値を継承</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">コードの簡潔化、セレクタのまとめ</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px; border: 1px solid #ddd;"><code>:where()</code></td>
+          <td style="padding: 12px; border: 1px solid #ddd;">常に0</td>
+          <td style="padding: 12px; border: 1px solid #ddd;">ベーススタイル、リセットCSS、上書き前提のスタイル</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box" style="margin-top: 20px;">
+      <p><strong>実務での推奨:</strong></p>
+      <ul style="margin: 10px 0; padding-left: 20px;">
+        <li>繰り返しの多いセレクタは<code>:is()</code>で簡潔化</li>
+        <li>フレームワークのデフォルトスタイルは<code>:where()</code>で実装</li>
+        <li>詳細度の違いを理解して適切に使い分ける</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

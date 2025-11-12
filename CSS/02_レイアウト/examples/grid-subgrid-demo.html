@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Layout & Subgrid デモ</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .demo-section {
+      max-width: 1400px;
+      margin: 0 auto 60px;
+      padding: 30px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-section h2 {
+      color: #1976d2;
+      margin-top: 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #1976d2;
+    }
+
+    .info {
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 20px 0;
+      border-left: 4px solid #2196f3;
+    }
+
+    /* デモ1: 基本的なGrid Layout */
+    .basic-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .basic-grid .box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* デモ2: レスポンシブグリッド（auto-fit） */
+    .responsive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-body h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .card-body p {
+      margin: 0;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* デモ3: Grid Template Areas */
+    .layout-grid {
+      display: grid;
+      grid-template-areas:
+        "header header header"
+        "sidebar main main"
+        "footer footer footer";
+      grid-template-columns: 200px 1fr 1fr;
+      grid-template-rows: 80px 1fr 60px;
+      gap: 15px;
+      min-height: 400px;
+      margin: 20px 0;
+    }
+
+    .layout-header {
+      grid-area: header;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .layout-sidebar {
+      grid-area: sidebar;
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .layout-main {
+      grid-area: main;
+      background: white;
+      border: 2px solid #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .layout-footer {
+      grid-area: footer;
+      background: #333;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    /* デモ4: Subgrid（カードの高さ揃え） */
+    .subgrid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 20px 0;
+    }
+
+    .subgrid-card {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 4;
+      row-gap: 15px;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+      background: white;
+      transition: box-shadow 0.3s;
+    }
+
+    .subgrid-card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .subgrid-card h3 {
+      margin: 0;
+      color: #1976d2;
+      font-size: 20px;
+    }
+
+    .subgrid-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .subgrid-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .subgrid-card .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #e3f2fd;
+      color: #1976d2;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* デモ5: place-content と配置 */
+    .center-demo {
+      display: grid;
+      place-content: center;
+      min-height: 300px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .center-box {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .center-box h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .center-box p {
+      margin: 0;
+      color: #666;
+    }
+
+    /* コードブロック */
+    .code-block {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      padding: 20px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 15px 0;
+    }
+
+    .code-block code {
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @media (width < 768px) {
+      .layout-grid {
+        grid-template-areas:
+          "header"
+          "main"
+          "sidebar"
+          "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: 80px 1fr auto 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Grid Layout & Subgrid 完全デモ</h1>
+
+  <!-- デモ1: 基本的なGrid Layout -->
+  <div class="demo-section">
+    <h2>1. 基本的な Grid Layout</h2>
+    <div class="info">
+      <strong>ポイント:</strong> <code>grid-template-columns: repeat(3, 1fr)</code> で均等な3カラムレイアウト
+    </div>
+
+    <div class="basic-grid">
+      <div class="box">Box 1</div>
+      <div class="box">Box 2</div>
+      <div class="box">Box 3</div>
+      <div class="box">Box 4</div>
+      <div class="box">Box 5</div>
+      <div class="box">Box 6</div>
+    </div>
+
+    <div class="code-block">
+      <code>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}</code>
+    </div>
+  </div>
+
+  <!-- デモ2: レスポンシブグリッド -->
+  <div class="demo-section">
+    <h2>2. レスポンシブグリッド（auto-fit + minmax）</h2>
+    <div class="info">
+      <strong>ポイント:</strong> <code>repeat(auto-fit, minmax(250px, 1fr))</code> で画面幅に応じて自動的にカラム数が変わる（ウィンドウサイズを変更してみてください）
+    </div>
+
+    <div class="responsive-grid">
+      <div class="card">
+        <img src="https://via.placeholder.com/400x200/667eea/ffffff?text=Card+1" alt="Card 1">
+        <div class="card-body">
+          <h3>カード1</h3>
+          <p>レスポンシブに対応したカードレイアウト。画面幅に応じて自動的にカラム数が調整されます。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x200/f093fb/ffffff?text=Card+2" alt="Card 2">
+        <div class="card-body">
+          <h3>カード2</h3>
+          <p>minmaxを使用することで、最小幅を保証しながら柔軟にレイアウトできます。</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/400x200/4facfe/ffffff?text=Card+3" alt="Card 3">
+        <div class="card-body">
+          <h3>カード3</h3>
+          <p>メディアクエリを書かなくても、自動的にレスポンシブになるのが特徴です。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <code>.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}</code>
+    </div>
+  </div>
+
+  <!-- デモ3: Grid Template Areas -->
+  <div class="demo-section">
+    <h2>3. Grid Template Areas（名前付きエリア）</h2>
+    <div class="info">
+      <strong>ポイント:</strong> <code>grid-template-areas</code> でレイアウトを視覚的に定義。レスポンシブ対応も簡単（画面幅768px以下でレイアウトが変わります）
+    </div>
+
+    <div class="layout-grid">
+      <div class="layout-header">Header</div>
+      <div class="layout-sidebar">
+        <strong>Sidebar</strong>
+        <ul>
+          <li>メニュー1</li>
+          <li>メニュー2</li>
+          <li>メニュー3</li>
+        </ul>
+      </div>
+      <div class="layout-main">
+        <h3>Main Content</h3>
+        <p>メインコンテンツエリア。grid-template-areasを使うことで、HTMLの順序とは独立してレイアウトを定義できます。</p>
+      </div>
+      <div class="layout-footer">Footer</div>
+    </div>
+
+    <div class="code-block">
+      <code>.layout {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
+  grid-template-columns: 200px 1fr 1fr;
+  gap: 15px;
+}
+
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }</code>
+    </div>
+  </div>
+
+  <!-- デモ4: Subgrid -->
+  <div class="demo-section">
+    <h2>4. Subgrid（要素の高さ自動揃え）</h2>
+    <div class="info">
+      <strong>ポイント:</strong> <code>grid-template-rows: subgrid</code> で親グリッドの行を継承。各カードの見出し、画像、説明文、タグがそれぞれ同じ高さに自動調整されます
+    </div>
+
+    <div class="subgrid-container">
+      <div class="subgrid-card">
+        <h3>短いタイトル</h3>
+        <img src="https://via.placeholder.com/300x180/667eea/ffffff?text=Image+1" alt="Image 1">
+        <p>これは短い説明文です。Subgridにより、他のカードの説明文の高さに自動的に合わせられます。</p>
+        <div><span class="tag">Web開発</span></div>
+      </div>
+
+      <div class="subgrid-card">
+        <h3>これはもっと長いタイトルの例です</h3>
+        <img src="https://via.placeholder.com/300x180/f093fb/ffffff?text=Image+2" alt="Image 2">
+        <p>説明文の長さが異なっても大丈夫です。Subgridが自動的に高さを揃えてくれます。JavaScriptは一切不要で、CSSだけで実現できます。</p>
+        <div><span class="tag">CSS Grid</span></div>
+      </div>
+
+      <div class="subgrid-card">
+        <h3>中程度のタイトル</h3>
+        <img src="https://via.placeholder.com/300x180/4facfe/ffffff?text=Image+3" alt="Image 3">
+        <p>ウィンドウサイズを変更しても、常に同じ行のカードの高さが揃います。レスポンシブに対応しています。</p>
+        <div><span class="tag">Subgrid</span></div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <code>.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: subgrid; /* ← ここが重要 */
+  grid-row: span 4; /* 親グリッドの4行分 */
+  row-gap: 15px;
+}</code>
+    </div>
+  </div>
+
+  <!-- デモ5: place-content -->
+  <div class="demo-section">
+    <h2>5. place-content: center（完全中央配置）</h2>
+    <div class="info">
+      <strong>ポイント:</strong> <code>place-content: center</code> でグリッド内のコンテンツを縦横中央に配置
+    </div>
+
+    <div class="center-demo">
+      <div class="center-box">
+        <h3>完全中央配置</h3>
+        <p>Grid + place-content で簡単に実現</p>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <code>.center {
+  display: grid;
+  place-content: center;
+  min-height: 100vh; /* 画面全体の高さ */
+}</code>
+    </div>
+  </div>
+
+</body>
+</html>
