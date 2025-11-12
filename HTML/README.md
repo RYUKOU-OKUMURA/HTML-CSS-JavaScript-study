@@ -15,7 +15,7 @@
 ## 📖 目次
 
 ### 1. 基礎編
-- [HTMLの基本](./01-basics/README.md)
+- [HTMLの基本](./01_基礎/README.md)
   - HTMLとは何か
   - 基本的な構造
   - よく使う要素
@@ -23,43 +23,43 @@
 ### 2. セマンティックHTML編
 モダンなHTMLでは、意味のある要素を使うことが重要です。
 
-- [セマンティックHTML概要](./02-semantic-html/README.md)
-- [Details/Summary要素（アコーディオン）](./02-semantic-html/01-details-summary.md)
-- [Dialog要素（モーダル）](./02-semantic-html/02-dialog.md)
-- [Hgroup要素（見出しグループ）](./02-semantic-html/03-hgroup.md)
-- [Search要素（検索フォーム）](./02-semantic-html/04-search.md)
+- [セマンティックHTML概要](./02_セマンティックHTML/README.md)
+- [Details/Summary要素（アコーディオン）](./02_セマンティックHTML/01-details-summary.md)
+- [Dialog要素（モーダル）](./02_セマンティックHTML/02-dialog.md)
+- [Hgroup要素（見出しグループ）](./02_セマンティックHTML/03-hgroup.md)
+- [Search要素（検索フォーム）](./02_セマンティックHTML/04-search.md)
 
 ### 3. 画像最適化編
 Webパフォーマンスの鍵となる画像の最適化について学びます。
 
-- [画像最適化概要](./03-images/README.md)
-- [Lazy Loading（遅延読み込み）](./03-images/01-lazy-loading.md)
-- [Picture要素（レスポンシブ画像）](./03-images/02-picture-element.md)
-- [Decoding属性（デコード制御）](./03-images/03-decoding.md)
-- [ぼかし効果とプレースホルダー](./03-images/04-blur-effect.md)
+- [画像最適化概要](./03_画像最適化/README.md)
+- [Lazy Loading（遅延読み込み）](./03_画像最適化/01-lazy-loading.md)
+- [Picture要素（レスポンシブ画像）](./03_画像最適化/02-picture-element.md)
+- [Decoding属性（デコード制御）](./03_画像最適化/03-decoding.md)
+- [ぼかし効果とプレースホルダー](./03_画像最適化/04-blur-effect.md)
 
 ### 4. アクセシビリティ編
 すべてのユーザーが使いやすいWebサイトを作るための知識です。
 
-- [アクセシビリティ概要](./04-accessibility/README.md)
-- [WCAG基礎](./04-accessibility/01-wcag-basics.md)
-- [WAI-ARIA](./04-accessibility/02-wai-aria.md)
-- [アクセシブルなタブUI](./04-accessibility/03-accessible-tabs.md)
+- [アクセシビリティ概要](./04_アクセシビリティ/README.md)
+- [WCAG基礎](./04_アクセシビリティ/01-wcag-basics.md)
+- [WAI-ARIA](./04_アクセシビリティ/02-wai-aria.md)
+- [アクセシブルなタブUI](./04_アクセシビリティ/03-accessible-tabs.md)
 
 ### 5. パフォーマンス最適化編
 ページ速度とCore Web Vitalsを改善するための技術です。
 
-- [パフォーマンス最適化概要](./05-performance/README.md)
-- [Link Preload（リソースの先読み）](./05-performance/01-link-preload.md)
+- [パフォーマンス最適化概要](./05_パフォーマンス/README.md)
+- [Link Preload（リソースの先読み）](./05_パフォーマンス/01-link-preload.md)
 
 ## 💻 実装サンプル
 
-各トピックの実装サンプルは[examples](../../examples/html/)フォルダにあります：
+各トピックの実装サンプルは[examples](../examples/HTML/)フォルダにあります：
 
-- [アコーディオンのサンプル](../../examples/html/accordion/)
-- [モーダルのサンプル](../../examples/html/modal/)
-- [画像最適化のサンプル](../../examples/html/images/)
-- [タブUIのサンプル](../../examples/html/tabs/)
+- [アコーディオンのサンプル](../examples/HTML/accordion/)
+- [モーダルのサンプル](../examples/HTML/modal/)
+- [画像最適化のサンプル](../examples/HTML/images/)
+- [タブUIのサンプル](../examples/HTML/tabs/)
 
 ## 🎯 学習目標
 

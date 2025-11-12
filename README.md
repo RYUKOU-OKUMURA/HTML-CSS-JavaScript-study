@@ -22,7 +22,7 @@ iOS Safari 15系以上でサポートされている、2024年現在のモダン
 
 モダンなHTML開発のための包括的なガイドです。
 
-**[HTML学習ガイド →](./docs/html/README.md)**
+**[HTML学習ガイド →](./HTML/README.md)**
 
 #### 主なトピック
 
@@ -35,7 +35,9 @@ iOS Safari 15系以上でサポートされている、2024年現在のモダン
 
 ### 🎨 CSS学習ガイド
 
-現代のWeb開発に必須のCSSテクニックを5つのカテゴリーに分けて解説しています。
+現代のWeb開発に必須のCSSテクニックを6つのカテゴリーに分けて解説しています。
+
+**[CSS学習ガイド →](./CSS/README.md)**
 
 #### [01. セレクタ編](./CSS/01_セレクタ/)
 
@@ -94,6 +96,19 @@ iOS Safari 15系以上でサポートされている、2024年現在のモダン
 - Visually Hidden - スクリーンリーダー対応
 
 [📄 詳細を見る](./CSS/05_アクセシビリティ/README.md)
+
+---
+
+#### [06. 実装パターン編](./CSS/06_実装パターン/)
+
+**学習内容:**
+- アコーディオン - Details要素のアニメーション
+- タブUI - アクセシブルな実装
+- カードレイアウト - Grid + Subgrid
+- レスポンシブ画像ギャラリー
+- スムーススクロール
+
+[📄 詳細を見る](./CSS/06_実装パターン/README.md)
 
 ---
 
@@ -160,19 +175,21 @@ iOS Safari 15系以上でサポートされている、2024年現在のモダン
 ```
 HTML-CSS-JavaScript-study/
 ├── README.md                    # このファイル
-├── docs/
-│   └── html/                    # HTML学習ドキュメント
-│       ├── README.md
-│       ├── 01-basics/
-│       ├── 02-semantic-html/
-│       ├── 03-images/
-│       └── 04-accessibility/
+├── HTML/                        # HTML学習資料
+│   ├── README.md
+│   ├── 01_基礎/
+│   ├── 02_セマンティックHTML/
+│   ├── 03_画像最適化/
+│   ├── 04_アクセシビリティ/
+│   └── 05_パフォーマンス/
 ├── CSS/                         # CSS学習資料
+│   ├── README.md
 │   ├── 01_セレクタ/
 │   ├── 02_レイアウト/
 │   ├── 03_視覚効果/
 │   ├── 04_モダンプロパティ/
-│   └── 05_アクセシビリティ/
+│   ├── 05_アクセシビリティ/
+│   └── 06_実装パターン/
 ├── JavaScript/                  # JavaScript学習資料
 │   ├── README.md
 │   ├── 01_基礎/
@@ -180,7 +197,9 @@ HTML-CSS-JavaScript-study/
 │   ├── 03_パフォーマンス最適化/
 │   └── 04_ブラウザAPI/
 └── examples/                    # 実装サンプル
-    └── html/
+    ├── HTML/
+    ├── CSS/
+    └── JavaScript/
 ```
 
 ---
@@ -295,8 +314,8 @@ HTML-CSS-JavaScript-study/
 
 ### レベル1: 初学者
 
-1. [HTML基礎](./docs/html/01-basics/README.md)
-2. [セマンティックHTML](./docs/html/02-semantic-html/README.md)
+1. [HTML基礎](./HTML/01_基礎/README.md)
+2. [セマンティックHTML](./HTML/02_セマンティックHTML/README.md)
 3. [CSSセレクタ編](./CSS/01_セレクタ/README.md)
 4. [JavaScript基礎編](./JavaScript/01_基礎/README.md)
 
@@ -304,7 +323,7 @@ HTML-CSS-JavaScript-study/
 
 1. [CSSレイアウト編](./CSS/02_レイアウト/README.md)
 2. [JavaScript非同期処理編](./JavaScript/02_非同期処理/README.md)
-3. [画像最適化](./docs/html/03-images/README.md)
+3. [画像最適化](./HTML/03_画像最適化/README.md)
 4. 実際のプロジェクトに適用
 
 ### レベル3: 上級者
