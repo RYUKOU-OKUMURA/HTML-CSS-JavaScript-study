@@ -133,6 +133,51 @@
 }
 ```
 
+#### ホバー時のインタラクティブな演出（複数効果を組み合わせ）
+```css
+/* 画像のコンテナー */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 画像本体 */
+.image-container img {
+  width: 100%;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* ホバー時: ぼかし + 明るく + 拡大 */
+.image-container:hover img {
+  filter: blur(8px) brightness(1.5);
+  transform: scale(1.1);
+}
+
+/* オーバーレイテキスト */
+.image-container .overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+/* ホバー時にテキストを表示 */
+.image-container:hover .overlay-text {
+  opacity: 1;
+}
+```
+
+**ユースケース:**
+- マウスオーバー時に追加情報を表示（SNSシェアカウント、記事メタ情報など）
+- オウンドメディアで記事の反応度を視覚的に表現
+- ポートフォリオサイトでの作品詳細表示
+
 #### ぼかし背景（モーダル）
 ```css
 .modal-backdrop {
@@ -328,6 +373,60 @@
   opacity: 0.6;
 }
 ```
+
+#### テキストと背景画像の合成（より詳細な例）
+```html
+<div class="hero-section">
+  <img src="cherry-blossoms.jpg" alt="桜">
+  <h1 class="hero-title">Cherry Blossoms</h1>
+</div>
+```
+
+```css
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+
+.hero-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-title {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  mix-blend-mode: overlay;
+  color: white;
+  font-size: 150px;
+  font-weight: bold;
+  margin: 0;
+}
+```
+
+**効果:** テキストと画像のコントラストが上がり、見栄えの印象が向上します。
+
+#### スタッキングコンテキストの制御
+
+背景の影響を受ける場合は、`isolation`プロパティを使用します：
+
+```css
+.isolated-container {
+  isolation: isolate; /* 新しいスタッキングコンテキストを作成 */
+}
+
+.isolated-container .blend-element {
+  mix-blend-mode: multiply;
+}
+```
+
+**使用場面:**
+- 親要素の背景に影響されたくない場合
+- ブレンド効果を特定の範囲内に限定したい場合
 
 ### ブラウザサポート
 - ✅ Chrome 41+

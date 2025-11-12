@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Details開閉アニメーション（JavaScript版）</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica', sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    /* 基本スタイル */
+    .animated-details {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .animated-details summary {
+      cursor: pointer;
+      font-weight: bold;
+      list-style: none;
+      padding: 16px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.2s;
+    }
+
+    .animated-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .animated-details summary::after {
+      content: '▼';
+      font-size: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .animated-details[open] summary::after {
+      transform: rotate(-180deg);
+    }
+
+    .animated-details summary:hover {
+      background-color: #f8f8f8;
+    }
+
+    /* コンテンツ部分 */
+    .details-content {
+      overflow: hidden;
+      height: 0;
+      opacity: 0;
+    }
+
+    .details-inner {
+      padding: 0 16px 16px;
+    }
+
+    /* 開いている状態 */
+    .animated-details[open] .details-content {
+      height: auto;
+      opacity: 1;
+    }
+
+    .note {
+      background: #e8f4f8;
+      border-left: 4px solid #0066cc;
+      padding: 16px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .note strong {
+      color: #0066cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Details開閉アニメーション（JavaScript版）</h1>
+
+  <div class="note">
+    <strong>対応ブラウザ:</strong> すべてのモダンブラウザ（IE11を除く）
+  </div>
+
+  <div class="animated-details">
+    <summary>アニメーションの仕組み</summary>
+    <div class="details-content">
+      <div class="details-inner">
+        <p>Web Animations APIを使用して、滑らかな開閉アニメーションを実装しています。</p>
+        <ul>
+          <li>開く時: 高さ0から実際の高さへ</li>
+          <li>閉じる時: 実際の高さから0へ</li>
+          <li>透明度も同時にアニメーション</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="animated-details">
+    <summary>実装のポイント</summary>
+    <div class="details-content">
+      <div class="details-inner">
+        <h3>重要な注意点</h3>
+        <ol>
+          <li><strong>直下の要素には上下paddingを指定しない</strong>
+            <p>.details-contentにpaddingを指定すると高さの計算が狂います。</p>
+          </li>
+          <li><strong>内側要素でpaddingを設定</strong>
+            <p>.details-innerでpaddingを指定します。</p>
+          </li>
+          <li><strong>scrollHeightを使用</strong>
+            <p>コンテンツの実際の高さを取得するために使用します。</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="animated-details">
+    <summary>長いコンテンツの例</summary>
+    <div class="details-content">
+      <div class="details-inner">
+        <p>このセクションには、より多くのコンテンツが含まれています。</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const detailsElements = document.querySelectorAll('.animated-details');
+
+      detailsElements.forEach((details) => {
+        const summary = details.querySelector('summary');
+        const content = details.querySelector('.details-content');
+
+        // デフォルトの開閉を無効化
+        summary.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          if (details.open) {
+            // 閉じるアニメーション
+            closeDetails(details, content);
+          } else {
+            // 開くアニメーション
+            openDetails(details, content);
+          }
+        });
+      });
+    });
+
+    // 開くアニメーション
+    function openDetails(details, content) {
+      details.open = true;
+
+      const openingAnimKeyframes = [
+        { height: 0, opacity: 0 },
+        { height: content.scrollHeight + 'px', opacity: 1 }
+      ];
+
+      content.animate(openingAnimKeyframes, {
+        duration: 400,
+        easing: 'ease-out'
+      });
+    }
+
+    // 閉じるアニメーション
+    function closeDetails(details, content) {
+      const closingAnimKeyframes = [
+        { height: content.scrollHeight + 'px', opacity: 1 },
+        { height: 0, opacity: 0 }
+      ];
+
+      const animation = content.animate(closingAnimKeyframes, {
+        duration: 400,
+        easing: 'ease-in'
+      });
+
+      // アニメーション終了後に閉じる
+      animation.onfinish = () => {
+        details.open = false;
+      };
+    }
+  </script>
+</body>
+</html>
