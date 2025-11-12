@@ -1,24 +1,17 @@
-# Web開発 & Python 学習リポジトリ
+# HTML / CSS / JavaScript 学習リポジトリ
 
-このリポジトリは、モダンなWeb開発（HTML / CSS / JavaScript）とPythonプログラミングの学習資料を集めた教科書的なリソースです。初学者から中級者まで、段階的に学習できるように構成されています。
+このリポジトリは、モダンなHTML / CSS / JavaScriptの学習資料を集めた教科書的なリソースです。初学者から中級者まで、段階的に学習できるように構成されています。
 
 ## 📚 資料について
-
-### Web開発（HTML / CSS / JavaScript）
 
 この資料は、[令和のHTML / CSS / JavaScriptの書き方50選](https://zenn.dev/necscat/articles/bc9bba54babaf5)の記事を参考に、各トピックを詳しく解説・拡張したものです。
 
 iOS Safari 15系以上でサポートされている、2024年現在のモダンな実装方法を中心に扱っています。
 
-### Python
-
-Python 3.8以降のモダンな開発手法を学べる包括的なガイドです。基礎文法からオブジェクト指向、標準ライブラリの活用まで、実践的な内容を網羅しています。
-
 ## 🎯 対象者
 
-- プログラミングを始めたばかりの初学者
-- Web開発の基礎を学びたい方
-- モダンなHTML/CSS/JavaScript/Pythonの書き方を学びたい方
+- Web開発を始めたばかりの初学者
+- 基礎的なHTML/CSS/JavaScriptは理解しているが、モダンな書き方を学びたい方
 - 実務で使える実践的な知識を身につけたい方
 
 ---
@@ -143,28 +136,6 @@ Python 3.8以降のモダンな開発手法を学べる包括的なガイドで�
 
 ---
 
-### 🐍 Python学習ガイド ✨NEW
-
-モダンなPython開発を学ぶための包括的なガイドです。
-
-**[Python学習ガイド →](./Python/README.md)**
-
-#### 主なトピック
-
-1. **基礎編** - 変数とデータ型、制御構文、関数、例外処理
-2. **データ構造編** - リスト、辞書、タプル、セット、内包表記
-3. **オブジェクト指向編** - クラス、継承、特殊メソッド、デコレータ
-4. **標準ライブラリ編** - ファイル操作、日付・時刻、JSON、正規表現
-
-**学習内容の例:**
-- ✅ Pythonの基本文法とデータ型
-- ✅ リスト、辞書などのデータ構造の使い分け
-- ✅ クラスを使ったオブジェクト指向プログラミング
-- ✅ pathlibやdatetimeなど実践的な標準ライブラリ
-- ✅ Pythonic なコードスタイル
-
----
-
 ## 🚀 学習の進め方
 
 ### ステップ1: 基礎から順番に学ぶ
@@ -173,7 +144,6 @@ Python 3.8以降のモダンな開発手法を学べる包括的なガイドで�
 1. HTML基礎 → セマンティックHTML → 画像最適化 → アクセシビリティ
 2. CSSセレクタ → レイアウト → 視覚効果 → モダンプロパティ → アクセシビリティ
 3. JavaScript基礎 → 非同期処理 → パフォーマンス最適化 → ブラウザAPI
-4. Python基礎 → データ構造 → オブジェクト指向 → 標準ライブラリ
 ```
 
 ### ステップ2: デモで実際の動きを確認
@@ -191,23 +161,12 @@ Python 3.8以降のモダンな開発手法を学べる包括的なガイドで�
 
 学んだ知識を活かして、以下のようなプロジェクトに挑戦しましょう：
 
-#### Web開発プロジェクト
 - **カードグリッド** - Grid Layout + Subgridで統一感のあるカード
 - **ダークモード対応サイト** - currentColorとCSS変数で効率的に
 - **アクセシブルなフォーム** - 適切なメディアクエリとVisually Hidden
 - **レスポンシブLP** - clamp()とモダンなビューポートユニット
 - **検索機能** - デバウンスとfetch APIで最適化
 - **スクロールアニメーション** - Intersection Observerで実装
-
-#### Pythonプロジェクト
-- **ToDoアプリ** - JSONでデータ保存、CLIまたはGUI
-- **ファイル整理ツール** - pathlibで拡張子別にファイル分類
-- **天気情報取得ツール** - APIを使って天気データを取得・表示
-- **簡単なWebスクレイピング** - requests + BeautifulSoup
-- **ログ分析ツール** - 正規表現でログファイルを解析
-
-#### フルスタックプロジェクト
-- **Python (FastAPI/Flask) + JavaScript** でWebアプリケーション開発
 
 ---
 
@@ -237,12 +196,6 @@ HTML-CSS-JavaScript-study/
 │   ├── 02_非同期処理/
 │   ├── 03_パフォーマンス最適化/
 │   └── 04_ブラウザAPI/
-├── Python/                      # Python学習資料
-│   ├── README.md
-│   ├── 01_基礎/
-│   ├── 02_データ構造/
-│   ├── 03_オブジェクト指向/
-│   └── 04_標準ライブラリ/
 └── examples/                    # 実装サンプル
     ├── HTML/
     ├── CSS/
@@ -275,54 +228,25 @@ HTML-CSS-JavaScript-study/
 - ✅ モダンなブラウザAPIを活用できる
 - ✅ スコープとモジュールを理解して使える
 
-### Python
-- ✅ Pythonの基本文法を理解し、簡単なプログラムを書ける
-- ✅ リスト、辞書などのデータ構造を適切に使い分けられる
-- ✅ クラスを使ったオブジェクト指向プログラミングができる
-- ✅ 標準ライブラリを活用して実践的なコードが書ける
-- ✅ Pythonic なコードスタイルを身につけられる
-
 ---
 
 ## 🔧 開発環境
 
 ### 推奨ツール
 
-#### エディタ・IDE
-- **VS Code**（推奨） - Web開発・Python開発の両方に最適
-- **PyCharm** - Python専用IDE
-- **WebStorm** - Web開発専用IDE
-- **Cursor** - AI統合エディタ
-
-#### ブラウザ
-- **Chrome**（推奨） - DevToolsが強力
-- **Firefox Developer Edition**
-- **Safari** - iOS対応確認用
-
-#### VS Code 拡張機能
-
-**Web開発用:**
-- Live Server（ローカルサーバー）
-- Prettier（コードフォーマット）
-- ESLint（JavaScriptの品質チェック）
-- axe DevTools（アクセシビリティチェック）
-
-**Python開発用:**
-- Python（Microsoft公式）
-- Pylance（高速な言語サーバー）
-- autopep8 または Black（コードフォーマット）
-- Pylint または Flake8（コード品質チェック）
+- **エディタ**: VS Code、WebStorm、Cursor
+- **ブラウザ**: Chrome（DevToolsが強力）
+- **拡張機能**:
+  - Live Server（ローカルサーバー）
+  - Prettier（コードフォーマット）
+  - ESLint（JavaScriptの品質チェック）
+  - axe DevTools（アクセシビリティチェック）
 
 ### チェックツール
 
-#### Web開発
 - **Lighthouse**: パフォーマンス・アクセシビリティ測定
 - **WAVE**: アクセシビリティチェック
 - **Can I use**: ブラウザ対応確認
-
-#### Python開発
-- **Python Tutor**: コードの実行を視覚化
-- **PEP 8 チェッカー**: コードスタイルチェック
 
 ---
 
@@ -378,14 +302,6 @@ HTML-CSS-JavaScript-study/
 - [ ] Intersection Observerでスクロール連動を実装できる
 - [ ] matchMediaでレスポンシブなJavaScriptを書ける
 
-### Python
-- [ ] 変数とデータ型を理解している
-- [ ] if文、for文、while文を使える
-- [ ] 関数を定義できる
-- [ ] リスト、辞書を使ってデータを管理できる
-- [ ] クラスを定義してインスタンスを作成できる
-- [ ] pathlibやdatetimeなど標準ライブラリを使える
-
 ### 実践
 - [ ] カードグリッドを作成した
 - [ ] レスポンシブなレイアウトを作成した
@@ -402,24 +318,20 @@ HTML-CSS-JavaScript-study/
 2. [セマンティックHTML](./HTML/02_セマンティックHTML/README.md)
 3. [CSSセレクタ編](./CSS/01_セレクタ/README.md)
 4. [JavaScript基礎編](./JavaScript/01_基礎/README.md)
-5. [Python基礎編](./Python/01_基礎/README.md)
 
 ### レベル2: 中級者
 
 1. [CSSレイアウト編](./CSS/02_レイアウト/README.md)
 2. [JavaScript非同期処理編](./JavaScript/02_非同期処理/README.md)
-3. [Pythonデータ構造編](./Python/02_データ構造/README.md)
-4. [画像最適化](./HTML/03_画像最適化/README.md)
-5. 実際のプロジェクトに適用
+3. [画像最適化](./HTML/03_画像最適化/README.md)
+4. 実際のプロジェクトに適用
 
 ### レベル3: 上級者
 
 1. [JavaScriptパフォーマンス最適化編](./JavaScript/03_パフォーマンス最適化/README.md)
 2. [JavaScriptブラウザAPI編](./JavaScript/04_ブラウザAPI/README.md)
-3. [Pythonオブジェクト指向編](./Python/03_オブジェクト指向/README.md)
-4. [Python標準ライブラリ編](./Python/04_標準ライブラリ/README.md)
-5. すべてのベストプラクティスを組み合わせる
-6. パフォーマンス測定とチューニング
+3. すべてのベストプラクティスを組み合わせる
+4. パフォーマンス測定とチューニング
 
 ---
 
@@ -427,43 +339,26 @@ HTML-CSS-JavaScript-study/
 
 ### 公式ドキュメント
 
-#### Web開発
-- [MDN Web Docs](https://developer.mozilla.org/ja/) - Web技術の総合リファレンス
-- [HTML Standard](https://html.spec.whatwg.org/) - HTML標準仕様
-- [W3C CSS Specifications](https://www.w3.org/Style/CSS/) - CSS仕様
-- [ECMAScript仕様](https://tc39.es/ecma262/) - JavaScript標準仕様
-
-#### Python
-- [Python公式ドキュメント（日本語）](https://docs.python.org/ja/3/) - Python公式リファレンス
-- [PEP 8](https://pep8-ja.readthedocs.io/) - Pythonコーディング規約
-- [Python標準ライブラリ](https://docs.python.org/ja/3/library/)
+- [MDN Web Docs](https://developer.mozilla.org/ja/)
+- [HTML Standard](https://html.spec.whatwg.org/)
+- [W3C CSS Specifications](https://www.w3.org/Style/CSS/)
+- [ECMAScript仕様](https://tc39.es/ecma262/)
 
 ### 学習リソース
 
-#### Web開発
-- [Web.dev](https://web.dev/) - Googleの学習サイト
-- [JavaScript.info](https://ja.javascript.info/) - JavaScriptの詳細チュートリアル
-- [CSS-Tricks](https://css-tricks.com/) - CSSテクニック集
-
-#### Python
-- [Python.org チュートリアル](https://docs.python.org/ja/3/tutorial/) - 公式チュートリアル
-- [Real Python](https://realpython.com/) - 実践的なPythonチュートリアル
-- [PyQ](https://pyq.jp/) - Python専門オンライン学習
+- [Web.dev](https://web.dev/)
+- [JavaScript.info](https://ja.javascript.info/)
+- [CSS-Tricks](https://css-tricks.com/)
 
 ### ツール
 
-#### Web開発
-- [Can I use](https://caniuse.com/) - ブラウザ対応確認
-- [Clippy - clip-path maker](https://bennettfeely.com/clippy/) - CSS clip-pathジェネレーター
-- [Babel REPL](https://babeljs.io/repl) - JavaScript変換確認
+- [Can I use](https://caniuse.com/)
+- [Clippy - clip-path maker](https://bennettfeely.com/clippy/)
+- [Babel REPL](https://babeljs.io/repl)
 
-#### Python
-- [Python Tutor](https://pythontutor.com/) - コード実行の視覚化
-- [PEP 8 オンラインチェッカー](http://pep8online.com/) - コードスタイルチェック
+### 元記事
 
-### 元記事・参考資料
-
-- [令和のHTML / CSS / JavaScriptの書き方50選](https://zenn.dev/necscat/articles/bc9bba54babaf5) - このリポジトリのWeb開発資料の基礎となった記事
+- [令和のHTML / CSS / JavaScriptの書き方50選](https://zenn.dev/necscat/articles/bc9bba54babaf5)
 
 ---
 
