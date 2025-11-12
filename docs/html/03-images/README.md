@@ -70,6 +70,23 @@ Webページの容量の約50〜70%は画像が占めています。
 - メインスレッドのブロッキング防止
 - パフォーマンスの微調整
 
+### 4. ぼかし効果とプレースホルダー
+
+画像読み込み中のUXを向上させる技術です。
+
+[詳しく学ぶ →](./04-blur-effect.md)
+
+```html
+<div class="blur-up" style="background-image: url('tiny.jpg');">
+  <img src="full.jpg" alt="説明" loading="lazy">
+</div>
+```
+
+**メリット:**
+- ユーザー体験の向上
+- レイアウトシフトの防止
+- 体感速度の向上
+
 ## 基本的なベストプラクティス
 
 ### 必須の実装
@@ -324,6 +341,7 @@ Googleが定めるパフォーマンス指標：
 1. [Lazy Loading（遅延読み込み）](./01-lazy-loading.md)
 2. [Picture要素（レスポンシブ画像）](./02-picture-element.md)
 3. [Decoding属性（デコード制御）](./03-decoding.md)
+4. [ぼかし効果とプレースホルダー](./04-blur-effect.md)
 
 ## 参考リンク
 
